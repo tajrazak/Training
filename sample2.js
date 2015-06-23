@@ -1,10 +1,10 @@
 var express=require('express');
 var app=express();
 
-app.get('/param',function(req,res){
+app.get('/:param/:param1',function(req,res){
  
-    res.send(JSON.stringify({'a':'taj','b':'raj'}));
-    
+  var data=req.params.param,data2=req.params.param1;
+  res.send({"A":data,"B":data2,"Result":data+data2});
   
 });
 
