@@ -1,0 +1,22 @@
+
+<p>
+<ul>
+
+
+<%  for(items in ResultData)
+    {
+      for(i in ResultData[items].models)
+      {%>
+      
+     <li>
+      <%= ResultData[items].models[i].name%>
+      <%= ResultData[items].models[i].description%>
+        
+         </li>
+         
+         <%  }
+    } %>
+    
+   
+  </ul>
+</p>
