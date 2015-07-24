@@ -1,0 +1,30 @@
+.widthSize {
+    margin-top: 200px;
+    width: 500px;
+}
+
+span {
+    color: red;
+}
+
+#errorMessage {
+    color: blue;
+}
+
+textarea {
+    overflow-y: scroll;
+    height: 100px;
+    resize: none;
+    font-style: italic;
+    font-weight: bold;
+    /* Remove this if you want the user to resize the textarea */
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+hr {
+    height: 10px;
+}

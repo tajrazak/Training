@@ -1,0 +1,86 @@
+var express = require('express'),
+    ejs = require('ejs'),
+    bodyparser = require('body-parser'),
+    mongoose = require('mongoose'),
+    session = require('express-session'),
+    findUserDataCtrl = require('./controllers/FindUserDataCtrl.js'),
+    checkForSessionCtrl = require('./controllers/CheckForSession.js'),
+    savePostCtrl = require('./controllers/SavePostCtrl.js'),
+    postSchema = require('./model/postschema.js'),
+    getPostCtrl=require('./controllers/getPostCtrl.js'),
+    getPostContentOnload=require('./controllers/getPostContentCtrl.js'),
+    dbConnection = require('./config/mongoconnect.js');
+    
+
+var app = express();
+app.use(express.static(__dirname + '/config'))
+app.use(express.static(__dirname + '/controllers'))
+app.use(express.static(__dirname + '/helpers'))
+app.use(express.static(__dirname + '/model'))
+app.use(express.static(__dirname + '/public/css'))
+app.use(express.static(__dirname + '/public/img'))
+app.use(express.static(__dirname + '/public/js'))
+app.use(express.static(__dirname + '/public/js/controllers'))
+app.use(express.static(__dirname + '/public/js/directives'))
+app.use(express.static(__dirname + '/public/lib'))
+
+app.use(express.static(__dirname + '/services'))
+app.use(express.static(__dirname + '/views'))
+app.use(express.static(__dirname + '/views/templates'))
+
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
+app.use(session({
+    secret: 'itsSecret',
+    resave: false,
+    saveUninitialized: true,
+
+}))
+
+
+app.use(bodyparser.json());
+app.get('/', function (req, res) {
+
+    res.render('index.ejs')
+    res.end()
+})
+
+app.get('/checkForSession', checkForSessionCtrl)
+
+app.post('/getData', findUserDataCtrl)
+
+app.post('/postContent', savePostCtrl)
+
+app.post('/postContent', getPostCtrl)
+
+/*app.post('/getPostContent', getPostContentOnload)
+*/
+app.post('/like', function (req, res) {
+   dbConnection.connect();
+
+    postSchema.findOne({ //change here...................not updating save it
+        _id: req.body.postid
+    }, function(err,post){
+      
+      if(!err) 
+      {     
+        //console.log(post);
+        post.likes.push(req.session.profilename);
+        post.save(function(err,status){
+        if(err)
+        console.log(err);
+        else
+        {
+          console.log("saved");
+          dbConnection.close();
+          res.send();
+        }
+        });
+      }
+    });
+   
+});
+
+
+app.listen(2001)
