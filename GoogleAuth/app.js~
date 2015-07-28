@@ -1,0 +1,96 @@
+var express = require('express'),
+    ejs = require('ejs'),
+    bodyparser = require('body-parser'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+
+
+var app = express();
+ app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/config'))
+app.use(express.static(__dirname + '/controllers'))
+app.use(express.static(__dirname + '/helpers'))
+app.use(express.static(__dirname + '/model'))
+app.use(express.static(__dirname + '/public/css'))
+app.use(express.static(__dirname + '/public/img'))
+app.use(express.static(__dirname + '/public/js'))
+app.use(express.static(__dirname + '/public/js/controllers'))
+app.use(express.static(__dirname + '/public/lib'))
+app.use(express.static(__dirname + '/services'))
+app.use(express.static(__dirname + '/views'))
+app.use(express.static(__dirname + '/views/templates'))
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
+app.use(passport.initialize());
+app.use(bodyparser.json());
+app.get('/', function (req, res) {
+
+    res.render('index.ejs')
+
+})
+
+
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://127.0.0.1:3000/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function () {
+      
+      // To keep the example simple, the user's Google profile is returned to
+      // represent the logged-in user.  In a typical application, you would want
+      // to associate the Google account with a user record in your database,
+      // and return that user instead.
+      return done(null, profile);
+    });
+  }
+));
+
+
+
+
+// used to serialize the user for the session
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+// used to deserialize the user
+passport.deserializeUser(function (id, done) {
+   
+  done(null, obj);
+});
+
+
+
+
+
+app.get('/auth/google', passport.authenticate('google', {
+    scope:  ['https://www.googleapis.com/auth/plus.login']
+}));
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/profile',
+        failureRedirect: '/'
+    }));
+
+
+
+
+app.get('/profile', function (req, res) {
+    res.render('profile.ejs', {
+        user: req.user // get the user out of session and pass to template
+    });
+});
+
+
+
+
+
+
+app.listen(3000)
