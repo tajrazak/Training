@@ -1,0 +1,13 @@
+<html>
+  <head>
+   <script src="angularJS1.3/angular.js"></script>
+  </head>
+  
+  <body>
+  <form name="myform" novalidate>
+    <input type="url" ng-model="url"  placeholder="enter url"  required/>
+    <span ng-show="myform.url.$error.$invalid">not valid</span>
+    </form>
+  </body>
+  
+</html>

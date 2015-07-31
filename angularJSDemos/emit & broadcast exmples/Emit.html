@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    
+       <script>
+      var app=angular.module("App",[]);
+      app.controller("ParentCtrl",function($scope){
+          $scope.$on("myEvent",function(event,data){
+              $scope.myName=data;
+          });
+      });
+      app.controller("ChildCtrl",function($scope){
+      
+      $scope.Tell=function(){
+            $scope.$emit("myEvent","data");
+        };    
+      });
+    </script>
+    
+  </head>
+  <body ng-app="App">
+    <div ng-controller="ParentCtrl">
+    {{myName}}
+    
+    <div ng-controller="ChildCtrl">
+    <button ng-click="Tell()">fireEvent</button>
+    </div>
+    
+    
+    </div>
+    
+ 
+    
+  </body>
+</html>

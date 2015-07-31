@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>excercise</title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		<script src="../angularJS1.3/angular.min.js"></script>
+	</head>
+	
+ <body ng-app='test'>
+ 
+ <form name="myForm" novalidate>
+ 
+ <div class="container" ng-controller="myCtrl">
+ 
+ 	<label>Enter UserName:</label><input type="text" name="name" ng-model="name" placeholder="username" class="form-control" required>
+ 	<br><div>
+ 		<span ng-show="myForm.name.$error.required">username required</span>
+ 	</div>
+ 	<br>
+ 	<label>Enter Email:</label><input type="email" name="email" ng-model="email"  placeholder="email" class="form-control" required >
+ 	<br>
+ 	<div>
+ 		<span ng-show="myForm.email.$error.required">required email</span>
+ 		<span ng-show="myForm.email.$error.email && myForm.email.$invalid">invalid email</span>
+ 		
+ 	</div>
+ 	
+ 	<br>
+ 	<div>
+ 	<button class="btn btn-success" ng-disabled="!(myForm.email.$valid && myForm.name.$valid)">submit</button>
+ 	</div>
+ </div>
+ </form>
+ 
+ <script>
+ 	angular.module("test",[]) .controller("myCtrl",function($scope){
+ 		$scope.name="some name 'xyz'";
+ 		$scope.email="xyz@gmail.com";
+ 	});
+ </script>
+ 
+ 
+ </body>
+ 
+</html>

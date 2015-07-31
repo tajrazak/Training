@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>	
+	<head>	
+		<title>task</title>
+		 <script src="../angularJS1.3/angular.min.js"></script>
+   		<script src="../angularJS1.3/angular-route.min.js"></script>
+   		<link href="style.css" rel="stylesheet"/>
+   		<script src="taskRoute.js"></script>
+	</head>
+
+ <body ng-app="shopping">
+ 
+ 	<center><h1>Welcome</h1></center>
+ 	
+ 	<ul>
+ 	<li><a href="#/tvs">tv</a></li><br>
+ 	<li><a href="#/mobiles">mobiles</a></li>
+ 	</ul>
+ 	
+ 	<center>
+ 		<div ng-view></div>	
+ 	</center>
+ 	
+ 	
+ 	<script type="text/ng-template" id="tvs.html">
+ 		<ul>
+ 		<li ng-repeat="items in TvNames">{{items.name}}</li>
+ 		</ul>
+ 		
+ 	</script>
+ 	
+ 	<script type="text/ng-template" id="mobiles.html">
+ 		<ul>
+ 		<li ng-repeat="items in MobileNames">{{items.name}}</li>
+ 		</ul>
+ 	</script>
+ 	
+ </body>	
+	
+	
+	
+	
+</html>

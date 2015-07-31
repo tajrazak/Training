@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>custom directives</title>
+	</head>
+	
+  <body>
+  
+  	<div ng-app="app">
+  		
+  		
+  		<my-dir></my-dir>
+  		<hr>
+  		<h1 class="my-dir"></h1>
+  		<hr>
+  		<h2 my-dir></h2>
+  		
+  	</div>	
+  		
+  		<script src="angularJS/angular.min.js"></script>
+  		<script src="customtaj.js"></script>
+  		
+  		
+  </body>
+</html>
