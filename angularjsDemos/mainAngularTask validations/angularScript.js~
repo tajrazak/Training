@@ -1,0 +1,15 @@
+(function(){
+angular.module("validationApp",[]).service("studentService",function(){
+
+		this.studentDetails={};
+
+
+}).controller("ShowDetails",['studentService','$scope',function($scope,studentService){
+
+		this.submitDetails=function(){
+			
+				$scope.name="kumar";
+		
+		};
+
+}]))();

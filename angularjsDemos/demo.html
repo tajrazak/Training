@@ -1,0 +1,31 @@
+<html>
+	<body ng-app="mine">
+	
+		<input type="text" list="data"/>
+		<datalist id="data" >
+  <option value="Internet Explorer">
+  <option value="Firefox">
+  <option value="Chrome">
+  <option value="Safari">
+  <option value="Safari">
+</datalist> 
+
+	<input type="text" ng-controller="myctrl" ng-keydown="call($event)">
+	
+	
+	<script src="angularJS/angular.min.js"></script>
+	<script>
+			angular.module("mine",[]).controller('myctrl',function($scope){
+			
+			
+				$scope.call=function(event){
+					alert(event.keyCode);
+				};
+			
+			});
+	</script>
+	
+	
+	
+	</body>
+</html>

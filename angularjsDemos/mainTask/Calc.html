@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="route/routes.js"></script>
+    <script src="controllers/CalculatorCtrl.js"></script>
+    <script src="controllers/BmiCtrl.js"></script>
+    <script src="controllers/UnitCtrl.js"></script>
+
+</head>
+
+<body ng-app="calcApp">
+
+    <div class="container well3">
+
+        <ul class="nav nav-tabs">
+
+            <li><a href="#/MathCalculator">CALCULATOR</a>
+            </li>
+
+            <li><a href="#/unitConverter">UNITCONVERTER</a>
+            </li>
+
+            <li><a href="#/bmi">BMI</a>
+            </li>
+
+        </ul>
+
+        <div id="centering">
+            <ng-view></ng-view>
+        </div>
+
+    </div>
+
+
+</body>
+
+
+
+</html>

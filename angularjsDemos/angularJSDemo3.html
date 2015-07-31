@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>demo3</title>
+	</head>
+	
+ <body ng-app="myApp" ng-controller="myCtrl">
+ 	
+ 	
+ 	<input type="text" ng-model="name"/>
+ 	<p  ng-show="name" ng-repeat="names in personNames.names |filter:name">{{names.name}}</p>
+ 	
+ 	<script src="angularJS/angular.min.js"></script>
+ 
+ 	<script>
+ 		var app=angular.module("myApp",[]);
+ 		app.controller("myCtrl",function($scope){
+ 		
+ 		$scope.personNames={names:[{name:"taj"},{name:"kumar"},{name:"rajesh"}]};
+ 		
+ 		
+ 		});
+ 	</script>
+ 
+ </body>	
+
+</html>
+

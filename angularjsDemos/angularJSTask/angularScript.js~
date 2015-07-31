@@ -1,0 +1,49 @@
+(function(){
+angular.module("validationApp",[]).controller("FormCtrl",function($scope){
+
+		$scope.user="xyz";
+		$scope.password="xyz";
+		$scope.repassword="xyz";
+		$scope.email="xyz@gmail.com";
+		$scope.phone="44445555";
+
+	this.checkValidation=function(){
+		
+		if($scope.password==$scope.repassword)
+		return false;
+		else
+		return true;
+	}
+
+}).directive("myUser",function(){
+
+	return{
+		restrict:'E',
+		template:"<div class='col-sm-4'><br><span ng-show='myForm.user.$error.required'>required username</span></div>"
+	}
+}).directive("myPassword",function(){
+
+	return{
+		restrict:'E',
+		template:"<div class='col-sm-4'><br><span ng-show='myForm.password.$error.required'> password required</span></div>"
+	}
+}).directive("myRepassword",function(){
+
+	return{
+		restrict:'E',
+		template:"<div class='col-sm-4'><br><span ng-show='myForm.repassword.$error.required'> re-password required</span><span ng-show='validation.checkValidation() && !myForm.repassword.$error.required'>not matched with the password</span></div>"
+	}
+}).directive("myEmail",function(){
+
+	return{
+		restrict:'E',
+		template:"<div class='col-sm-4'><br><span ng-show='myForm.email.$error.required'> email required</span><span ng-show='myForm.email.$error.email&&myForm.email.$invalid'>invalid email</span></div>	"
+	}
+}).directive("checkPhone",function(){
+
+	return{
+		restrict:'E',
+		template:"<div class='col-sm-4'><br><span ng-show='myForm.phone.$error.required'> phone number required</span></div>"
+	}
+});
+})();

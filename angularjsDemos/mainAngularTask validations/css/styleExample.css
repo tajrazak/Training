@@ -1,0 +1,21 @@
+span {
+    color: red;
+}
+
+#tabledata {
+    color: blue;
+}
+
+.search {
+    position: absolute;
+    left: 1500px;
+}
+
+#aligned {
+    position: absolute;
+    left: 700px;
+}
+
+#passwordlength {
+    color: green;
+}
